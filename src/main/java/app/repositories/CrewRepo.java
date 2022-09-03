@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface CrewRepo extends CrudRepository<Crew, Long> {
 
     List<Crew> findByDutyShip_RegistrationCode(long dutyShip_registrationCode);
+
+    List<Crew> findBy();
 }
