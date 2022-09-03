@@ -42,8 +42,13 @@ public class HomeAndLoginController {
 
     @PostMapping(value = {"/register"})
     public String saveUser(Officer user) {
-        officerService.saveUser(user);
+        try {
+            officerService.saveUser(user);
 
-        return "redirect:/login";
+            return "redirect:/login";
+        } catch (RuntimeException e) {
+            return "redirect:/register";
+        }
+
     }
 }

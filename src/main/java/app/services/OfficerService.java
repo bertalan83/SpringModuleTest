@@ -26,9 +26,12 @@ public class OfficerService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return entityManager.createQuery("SELECT u FROM Officer u WHERE u.username = :name", Officer.class)
+
+        UserDetails userDetails = entityManager.createQuery("SELECT u FROM Officer u WHERE u.username = :name", Officer.class)
                 .setParameter("name", username)
                 .getSingleResult();
+
+        return userDetails;
     }
 
     @Transactional
