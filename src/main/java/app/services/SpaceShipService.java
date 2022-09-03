@@ -28,4 +28,8 @@ public class SpaceShipService {
         return spaceShipRepo.findByisActive(false);
     }
 
+    public void saveNewSpaceShip(SpaceShip spaceShip) {
+        spaceShipRepo.save(spaceShip);
+    }
+
 }

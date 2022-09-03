@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,12 +31,25 @@ public class SpaceShipController {
     }
 
     @GetMapping(value = {"/spaceship"})
-    public String saveNewSpaceShip(Model model) {
-        model.addAttribute("newShip", new SpaceShip());
+    public String saveNewSpaceShip(Model model, boolean checked) {
+        SpaceShip ship = new SpaceShip();
+
+        if (checked) {
+            ship.setActive(true);
+        }
+        model.addAttribute("newShip", ship);
         model.addAttribute("shipClasses", SpaceShipClass.values());
 
         return "spaceship_new";
     }
+
+    @PostMapping(value = {"/spaceship"})
+    public String saveShip(SpaceShip spaceShip) {
+        spaceShipService.saveNewSpaceShip(spaceShip);
+
+        return "redirect:/see-all-ships";
+    }
+
     @GetMapping(value = {"/see-all-ships"})
     public String seeAllSpaceShips(Model model) {
         List<SpaceShip> ships = spaceShipService.getAllShips();
