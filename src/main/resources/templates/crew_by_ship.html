@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crew by Ship</title>
+</head>
+
+<body>
+
+<div>
+    <h1 data-th-text="${ship.name}"></h1>
+</div>
+
+<div data-th-each="worker: ${crew}">
+    <li style="border-bottom: 1px solid #2B2B2B">
+        <p data-th-text="${worker.crewName}"></p>
+        <p data-th-text="${worker.crewRank}"></p>
+    </li>
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All spaceships</title>
+</head>
+
+<body>
+
+<div>
+    <a href="/see-all-ships/active">
+        <button>See active ships</button>
+    </a>
+</div>
+
+<div>
+    <a href="/see-all-ships/inactive">
+        <button>See inactive ships</button>
+    </a>
+</div>
+
+<div>
+    <a href="/see-all-ships">
+        <button>See all ships</button>
+    </a>
+</div>
+
+<div style="border: 1px solid gray;" data-th-each="ship: ${ships}">
+    <p data-th-text="${ship.registrationCode}"></p>
+    <p data-th-text="${ship.name}"></p>
+    <p data-th-text="${ship.spaceShipClass}"></p>
+    <p data-th-if="${ship.isActive}">Active</p>
+    <p data-th-unless="${ship.isActive}">Inactive</p>
+</div>
+
+</body>
+
+</html>
