@@ -5,6 +5,7 @@ import app.services.CrewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,5 +24,15 @@ public class CrewController {
         model.addAttribute("crew", crew);
 
         return "crew_all";
+    }
+
+    @GetMapping(value = "/see-all-crew/search")
+    public String seeAllCrewSearch(
+            @RequestParam (name = "search", required = false) String search,
+            Model model) {
+        List<Crew> crewFiltered = crewService.gelAllCrewFiltered(search);
+        model.addAttribute("crew", crewFiltered);
+
+        return "crew_search";
     }
 }

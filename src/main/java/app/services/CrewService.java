@@ -18,4 +18,8 @@ public class CrewService {
     public List<Crew> getAllCrew() {
         return crewRepo.findBy();
     }
+
+    public List<Crew> gelAllCrewFiltered(String search) {
+        return crewRepo.findByCrewNameContaining(search);
+    }
 }
